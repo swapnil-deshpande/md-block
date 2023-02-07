@@ -1,0 +1,201 @@
+/**
+ * The following styles get applied inside the editor only.
+ *
+ * Replace them with your own styles or remove the file completely.
+ */
+
+.wp-block-create-block-md-block {
+	width: 100%;
+	height: 100vh;
+	padding: 70px 0 70px 170px;
+	background-color: #121725;
+}
+
+.md-hero-container {
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	justify-content: center;
+	width: 100%;
+	height: 100%;
+	background-repeat: no-repeat;
+	background-size: 75%;
+	background-position: right;
+	background-color: #121725;
+	padding-top: 100px;
+}
+
+.md-sub-container {
+	display: flex;
+	width: 55%;
+	height: 100%;
+	background-color: #121725;
+	flex-direction: column;
+	justify-content: flex-end;
+	align-items: flex-start;
+}
+
+.md-hero-title, .md-hero-description {
+	/* color: #000000; */
+	font-family: Chivo, sans-serif;
+	font-weight: 300;
+}
+
+.md-hero-title {
+	font-size: calc(18px + (48 - 18) * ((100vw - 300px) / (1600 - 300)));
+	line-height: 1.2em;
+	text-transform: uppercase;
+}
+
+.md-hero-title span.title1 {
+	color: #54E6AF;
+}
+
+.md-hero-title span.title2 {
+	color: #fff;
+}
+
+.md-hero-description {
+	font-family: Chivo, sans-serif;
+	font-size: calc(12px + (18 - 12) * ((100vw - 300px) / (1600 - 300)));
+	width: 70%;
+	line-height: 28px;
+	color: #C2CBE5;
+	margin-top: 30px;
+}
+
+.md-brands {
+	display: flex;
+	justify-content: flex-start;
+	align-items: center;
+	margin-top: 60px;
+}
+
+.md-brand-img {
+	margin-right: 30px;
+}
+
+.md-request-input {
+	margin-top: 30px;
+	width: 70%;
+	position: relative;
+}
+
+.wp-block-create-block-md-block .md-request-input button {
+	position: absolute;
+	right: 0;
+	top: 0;
+	bottom: 0;
+	padding: 0 36px 0 36px;
+	border-radius: 50px;
+	border: 4px solid #2C344B;
+	font-size: calc(12px + (14 - 12) * ((100vw - 300px) / (1600 - 300)));
+	font-family: Chivo, sans-serif;
+	background-color: #54E6AF;
+	color: #121725;
+}
+
+.md-request-input input[type="email"] {
+	border-radius: 50px;
+	width: 100%;
+	height: 60px;
+	background-color: #2C344B;
+	border: none;
+	padding-left: 24px;
+}
+
+.md-request-input input[type="email"]::-moz-placeholder {
+	font-family: Chivo, sans-serif;
+	font-size: 12px;
+	font-weight: 600;
+}
+
+.md-request-input input[type="email"]::placeholder {
+	font-family: Chivo, sans-serif;
+	font-size: calc(10px + (12 - 10) * ((100vw - 300px) / (1600 - 300)));
+	font-weight: 600;
+}
+
+@media screen and (max-width: 1024px) {
+
+	.wp-block-create-block-md-block {
+		padding: 0 0 70px 36px;
+	}
+
+	.md-hero-container {
+		background-size: cover;
+		background-position: center;
+		padding-top: 210px;
+		overflow: hidden;
+	}
+
+	.md-sub-container {
+		width: 85%;
+	}
+
+	.md-hero-title {
+		font-size: calc(18px + (48 - 18) * ((100vw - 300px) / (1024 - 300)));
+	}
+
+	.md-hero-description {
+		font-size: calc(12px + (18 - 12) * ((100vw - 300px) / (1024 - 300)));
+		width: 80%;
+	}
+
+	.md-request-input {
+		width: 80%
+	}
+
+	.md-request-input input[type="email"] {
+		height: 48px;
+	}
+
+}
+
+@media screen and (max-width: 480px) {
+
+	.wp-block-create-block-md-block, .md-sub-container, .md-hero-container {
+		padding: unset;
+	}
+
+	.md-sub-container {
+		width: 100%;
+		background-color: #121725cc;
+		justify-content:center;
+		align-items: center;
+		padding: 20px;
+		text-align: center;
+	}
+
+	.md-hero-title {
+		font-size: calc(18px + (48 - 18) * ((100vw - 300px) / (768 - 300)));
+	}
+
+	.md-hero-description {
+		font-size: calc(12px + (18 - 12) * ((100vw - 300px) / (768 - 300)));
+	}
+
+	.md-hero-description, .md-request-input {
+		width: 100%;
+	}
+
+	.md-request-input input[type="email"] {
+		height: 40px;
+	}
+
+	.wp-block-create-block-md-block .md-request-input button {
+		position:relative;
+		border:unset;
+		height: 40px;
+		width:100%;
+		margin-top: 16px;
+	}
+
+	.md-brands {
+		margin-top: 30px;
+	}
+
+	.md-brand-img {
+		margin-right: 10px;
+	}
+}

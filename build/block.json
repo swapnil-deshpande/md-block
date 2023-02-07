@@ -1,0 +1,55 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 2,
+  "name": "create-block/md-block",
+  "version": "0.1.0",
+  "title": "Md Block",
+  "category": "widgets",
+  "icon": "smiley",
+  "description": "",
+  "supports": {
+    "html": false
+  },
+  "attributes": {
+    "title1": {
+      "type": "string",
+      "default": "Publish your podcasts"
+    },
+    "title2": {
+      "type": "string",
+      "default": "Everywhere."
+    },
+    "description": {
+      "type": "string",
+      "default": "Upload your audio to Pod with a single click. We’ll then distribute your podcast to Spotify, Apple Podcasts, Google Podcasts, Pocket Casts and more!"
+    },
+    "align": {
+      "type": "string",
+      "default": "none"
+    },
+    "media": {
+      "type": "string",
+      "default": ""
+    },
+    "logo": {
+      "type": "string",
+      "default": ""
+    },
+    "brand_1": {
+      "type": "string"
+    },
+    "brand_2": {
+      "type": "string"
+    },
+    "brand_3": {
+      "type": "string"
+    },
+    "brand_4": {
+      "type": "string"
+    }
+  },
+  "textdomain": "md-block",
+  "editorScript": "file:./index.js",
+  "editorStyle": "file:./index.css",
+  "style": "file:./style-index.css"
+}
