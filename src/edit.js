@@ -17,17 +17,16 @@ import {
 	BlockControls,
 	InspectorControls,
 	MediaUpload,
-	MediaUploadCheck
+	MediaUploadCheck,
+	RichText,
 } from '@wordpress/block-editor';
 
 import {
 	Button,
-	TextControl,
-	TextareaControl,
 	Panel,
 	PanelBody,
-	PanelRow
-} from '@wordpress/components'
+	PanelRow,
+} from '@wordpress/components';
 
 /**
  * Lets webpack process CSS, SASS or SCSS files referenced in JavaScript files.
@@ -35,9 +34,11 @@ import {
  *
  * @see https://www.npmjs.com/package/@wordpress/scripts#using-css
  */
-import './editor.css';
+import './editor.scss';
 
 import hero_bg from '../assets/images/hero-bg.png';
+import hero_bg_tablet from '../assets/images/hero-bg-tablet.png';
+import hero_bg_mobile from '../assets/images/hero-bg-mobile.png';
 import bg_pattern from '../assets/images/bg-pattern.png';
 import brand_1 from '../assets/images/brand-1.png';
 import brand_2 from '../assets/images/brand-2.png';
@@ -54,96 +55,87 @@ import logo from '../assets/images/logo.png';
  * @return {WPElement} Element to render.
  */
 export default function Edit( { attributes, setAttributes } ) {
-
 	const setDefaults = () => {
 		setAttributes( {
-			media: hero_bg,
 			logo: logo,
 			brand_1: brand_1,
 			brand_2: brand_2,
 			brand_3: brand_3,
-			brand_4: brand_4
-		} )
-	}
+			brand_4: brand_4,
+		} );
+	};
 
 	const onChangeAlign = ( newValue ) => {
-		setAttributes( { align: newValue === undefined ? 'none' : newValue, } )
-	}
+		setAttributes( { align: newValue === undefined ? 'none' : newValue } );
+	};
 
 	const onBgImgSelectSet = ( image ) => {
-		setAttributes( { media: image.url } )
-	}
+		setAttributes( { media_id: image.id, media: image.url } );
+	};
 
 	const onBgImgClear = () => {
-		setAttributes( { media: '' } )
-	}
-
-	const onChangeTitle1 = ( newTitle ) => {
-		setAttributes( { title1: newTitle } )
-	}
-
-	const onChangeTitle2 = ( newTitle ) => {
-		setAttributes( { title2: newTitle } )
-	}
-
-	const onChangeDescription = ( newDescription ) => {
-		setAttributes( { description: newDescription } )
-	}
+		setAttributes( { media: '', media_id: '' } );
+		hero_bg = '';
+	};
 
 	const ALLOWED_MEDIA_TYPES = [ 'image' ];
 
 	return (
 		<div { ...useBlockProps() }>
-
-			{setDefaults()}
+			{ setDefaults() }
 
 			<InspectorControls>
-
 				<Panel header="MD Hero">
 					<React.Fragment key=".0">
-						<PanelBody title="Content">
-							<PanelRow>
-								<div>
-									<TextControl
-										label="Hero Title: First Line"
-										onChange={( value ) => {
-											onChangeTitle1(value)
-										}}
-										value={attributes.title1}
-									/>
-									<TextControl
-										label="Hero Title: Second Line"
-										onChange={( value ) => {
-											onChangeTitle2(value)
-										}}
-										value={attributes.title2}
-									/>
-
-									<TextareaControl
-										label="Hero Description"
-										onChange={( value ) => {
-											onChangeDescription(value)
-										}}
-										value={attributes.description}
-									/>
-								</div>
-							</PanelRow>
-						</PanelBody>
 						<PanelBody title="Background">
 							<PanelRow>
 								<div>
 									<MediaUploadCheck>
 										<MediaUpload
-											onSelect={( media ) => {
-												onBgImgSelectSet(media)
-											}}
+											onSelect={ ( media ) => {
+												onBgImgSelectSet( media );
+											} }
 											allowedTypes={ ALLOWED_MEDIA_TYPES }
-											value={ attributes.media }
+											value={ attributes.media_id }
 											render={ ( { open } ) => (
 												<div>
-													{ attributes.media && <img src={attributes.media} style={{ display: 'block', height: '200px', width: '288px', backgroundColor: '#ddd', marginBottom: '10px' }}></img> }
-													<Button variant="secondary" onClick={ open } text={attributes.media ? 'Change Image' : 'Add Image'} style={{ marginRight: '20px' }}></Button>
-													<Button variant="tertiary" onClick={ onBgImgClear } text={'Clear'}></Button>
+													{ attributes.media && (
+														<img
+															id={
+																'select-img-preview'
+															}
+															src={
+																attributes.media
+															}
+															style={ {
+																display:
+																	'block',
+																height: '200px',
+																width: '288px',
+																backgroundColor:
+																	'#ddd',
+																marginBottom:
+																	'10px',
+															} }
+														></img>
+													) }
+													<Button
+														variant="secondary"
+														onClick={ open }
+														text={
+															attributes.media
+																? 'Change Image'
+																: 'Add Image'
+														}
+														style={ {
+															marginRight: '20px',
+														} }
+													></Button>
+													<Button
+														variant="tertiary"
+														onClick={ onBgImgClear }
+														text={ 'Clear' }
+													></Button>
 												</div>
 											) }
 										/>
@@ -153,47 +145,85 @@ export default function Edit( { attributes, setAttributes } ) {
 						</PanelBody>
 					</React.Fragment>
 				</Panel>
-
 			</InspectorControls>
 
 			<BlockControls>
-
 				<AlignmentControl
 					value={ attributes.align }
 					onChange={ onChangeAlign }
 				/>
-
 			</BlockControls>
 
-			<section className={'md-hero-container'} style={{ backgroundImage: `url(${attributes.media})` }}>
-				<div className={'md-sub-container'}>
-					<div className={'md-hero-title'}>
-						<span className={'title1'}>{attributes.title1}</span><br/>
-						<span className={'title2'}>{attributes.title2}</span>
-					</div>
-					<div className={'md-hero-description'}>
-						{attributes.description}
-					</div>
-					<div className={'md-request-input'}>
-						<input type={'email'} placeholder={'Email Address'}/>
-						<button type={'submit'}>Request Access</button>
-					</div>
-					<div className={'md-brands'}>
-						<div className={'md-brand-img'}>
-							<img src={attributes.brand_1} />
-						</div>
-						<div className={'md-brand-img'}>
-							<img src={attributes.brand_2} />
-						</div>
-						<div className={'md-brand-img'}>
-							<img src={attributes.brand_3} />
-						</div>
-						<div className={'md-brand-img'}>
-							<img src={attributes.brand_4} />
-						</div>
-					</div>
+			<div className={ 'container is-fluid md-pod-container' }>
+				<div className={ 'logo' }>
+					<img src={ logo } alt={ '' } />
 				</div>
-			</section>
+				<div className={ 'columns' }>
+					<div
+						className={
+							'column is-full-mobile is-three-quarters-tablet is-two-thirds-desktop md-pod-content'
+						}
+					>
+						<div className={ 'md-pod-title' }>
+							<span className={ 'title1' }>
+								<RichText
+									tagName="p"
+									className={ '' }
+									value={ attributes.title1 }
+									onChange={ ( title1 ) =>
+										setAttributes( { title1 } )
+									}
+								/>
+							</span>
+							<span className={ 'title2' }>
+								<RichText
+									tagName="p"
+									className={ '' }
+									value={ attributes.title2 }
+									onChange={ ( title2 ) =>
+										setAttributes( { title2 } )
+									}
+								/>
+							</span>
+						</div>
+						<div className={ 'md-pod-description' }>
+							<RichText
+								tagName="p"
+								className={ '' }
+								value={ attributes.description }
+								onChange={ ( description ) =>
+									setAttributes( { description } )
+								}
+							/>
+						</div>
+						<div className={ 'md-request-input' }>
+							<input
+								type={ 'email' }
+								placeholder={ 'Email Address' }
+							/>
+							<button type={ 'submit' }>Request Access</button>
+						</div>
+						<div className={ 'md-brands' }>
+							<div className={ 'md-brand-img' }>
+								<img src={ attributes.brand_1 } />
+							</div>
+							<div className={ 'md-brand-img' }>
+								<img src={ attributes.brand_2 } />
+							</div>
+							<div className={ 'md-brand-img' }>
+								<img src={ attributes.brand_3 } />
+							</div>
+							<div className={ 'md-brand-img' }>
+								<img src={ attributes.brand_4 } />
+							</div>
+						</div>
+					</div>
+					<div className={ 'column' }></div>
+				</div>
+				<div className={ 'md-pod-bg-pattern' }>
+					<img src={ bg_pattern } alt={ '' } />
+				</div>
+			</div>
 		</div>
 	);
 }

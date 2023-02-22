@@ -1,9 +1,9 @@
 {
   "$schema": "https://schemas.wp.org/trunk/block.json",
   "apiVersion": 2,
-  "name": "create-block/md-block",
+  "name": "create-block/pod-block",
   "version": "0.1.0",
-  "title": "Md Block",
+  "title": "Pod Block",
   "category": "widgets",
   "icon": "smiley",
   "description": "",
@@ -12,12 +12,16 @@
   },
   "attributes": {
     "title1": {
-      "type": "string",
-      "default": "Publish your podcasts"
+      "source": "html",
+      "selector": "p",
+      "default": "Publish your podcasts",
+      "enum": []
     },
     "title2": {
-      "type": "string",
-      "default": "Everywhere."
+      "source": "html",
+      "selector": "p",
+      "default": "Everywhere.",
+      "enum": []
     },
     "description": {
       "type": "string",
@@ -26,6 +30,10 @@
     "align": {
       "type": "string",
       "default": "none"
+    },
+    "media_id": {
+      "type": "integer",
+      "default": ""
     },
     "media": {
       "type": "string",
@@ -48,7 +56,7 @@
       "type": "string"
     }
   },
-  "textdomain": "md-block",
+  "textdomain": "pod-block",
   "editorScript": "file:./index.js",
   "editorStyle": "file:./index.css",
   "style": "file:./style-index.css"

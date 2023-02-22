@@ -1,0 +1,223 @@
+@import "../node_modules/bulma/bulma";
+@import url('https://fonts.googleapis.com/css2?family=Chivo:wght@100;200;300;400;500;600&display=swap');
+
+$desktop-breakpoint: 1200px;
+$tablet-breakpoint: 1024px;
+$mobile-breakpoint: 768px;
+$mini-breakpoint: 480px;
+
+.wp-block-create-block-pod-block * {
+  font-family: 'Chivo', sans-serif;
+}
+
+.wp-block-create-block-pod-block {
+  background-color: #121725;
+  padding: 100px 0 100px 135px;
+
+  @include until($tablet-breakpoint) {
+	padding: 0 0 100px 20px;
+  }
+
+  @include until($mobile-breakpoint) {
+	padding: unset;
+  }
+}
+
+.wp-block-create-block-pod-block .container.is-fluid.md-pod-container {
+  position: relative;
+  background-size: contain !important;
+  background: url("../assets/images/hero-bg.png") no-repeat right;
+
+  @include until($tablet-breakpoint) {
+	padding-top: 46px;
+	background-size: auto !important;
+	background: url("../assets/images/hero-bg-tablet.png") no-repeat right;
+  }
+
+  @include until($mobile-breakpoint) {
+	padding-top: 46px;
+	background-size: cover !important;
+	background: url("../assets/images/hero-bg-mobile.png") no-repeat center;
+  }
+}
+
+.wp-block-create-block-pod-block .logo {
+  @include until($mobile-breakpoint){
+	text-align: center;
+  }
+}
+
+.wp-block-create-block-pod-block .logo img {
+  height: 32px;
+  max-width: 100%;
+
+  @include until($mobile-breakpoint){
+	height: 46px;
+  }
+}
+
+.wp-block-create-block-pod-block .columns {
+  padding-top: 100px;
+
+  @include until($mobile-breakpoint){
+	padding-top: 50px;
+	margin-left: unset;
+  }
+}
+
+.wp-block-create-block-pod-block .column.md-pod-content {
+  background-color: #121725;
+  padding: 50px 40px 0 0;
+
+  @include until($mobile-breakpoint) {
+	background-color: unset;
+	padding: unset;
+  }
+}
+
+.wp-block-create-block-pod-block .md-pod-title {
+  font-size: 52px;
+  font-weight: 100;
+  line-height: 62px;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+
+  @include until($tablet-breakpoint){
+	font-size: 48px;
+	line-height: 56px;
+  }
+
+  @include until($mobile-breakpoint){
+	font-size: 26px;
+	line-height: 38px;
+	text-align: center;
+  }
+
+  @include until($mini-breakpoint){
+	font-size: 24px;
+	line-height: 36px;
+	text-align: center;
+  }
+}
+
+.wp-block-create-block-pod-block .md-pod-title p,
+.wp-block-create-block-pod-block .md-pod-description p {
+  padding: unset !important;
+  margin: unset !important;
+}
+
+.wp-block-create-block-pod-block .md-pod-title span:nth-child(1) {
+  color: #54E6AF;
+}
+
+.wp-block-create-block-pod-block .md-pod-title span:nth-child(2) {
+  color: #ffffff;
+}
+
+.wp-block-create-block-pod-block .md-pod-description {
+  margin-bottom: 20px;
+  font-size: 18px;
+  font-weight: 100;
+  line-height: 28px;
+  width: 66%;
+  color: #C2CBE5;
+
+  @include until($mobile-breakpoint){
+	font-size: 15px;
+	line-height: 25px;
+	text-align: center;
+	margin: auto auto 20px auto;
+  }
+
+  @include until($mini-breakpoint){
+	width: 100%;
+  }
+}
+
+.wp-block-create-block-pod-block .md-request-input {
+  width: 66%;
+  position: relative;
+  margin-bottom: 20px;
+
+  @include until($mobile-breakpoint){
+	margin: auto auto 20px auto;
+  }
+
+  @include until($mini-breakpoint){
+	width: 100%;
+  }
+}
+
+.wp-block-create-block-pod-block .md-request-input input[type="email"] {
+  width: 100%;
+  height: 56px;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 28px;
+  border: none;
+  border-radius: 100px;
+  background-color: #2c344b;
+  padding-left: 20px;
+  color: #C2CBE5;
+
+  @include until($mobile-breakpoint){
+	height: 46px;
+  }
+}
+
+.wp-block-create-block-pod-block .md-request-input input[type="email"]::placeholder {
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 28px;
+  color: #C2CBE5;
+}
+
+.wp-block-create-block-pod-block .md-request-input button {
+  position: absolute;
+  right: 5px;
+  top: 0;
+  bottom: 0;
+  left: auto;
+  margin: auto;
+  height: 46px;
+  width: 162px;
+  cursor: pointer;
+  font-size: 14px !important;
+  font-weight: 600;
+  line-height: 28px !important;
+  border: none;
+  border-radius: 100px !important;
+  color: #121725;
+  background-color: #54E6AF !important;
+
+  @include until($mobile-breakpoint){
+	height: 46px;
+	position: unset;
+	width: 100%;
+	margin-top: 15px;
+  }
+}
+
+.wp-block-create-block-pod-block .md-brands {
+  display: flex;
+  align-items: center;
+  column-gap: 40px;
+
+  @include until($mobile-breakpoint){
+	justify-content: center;
+	column-gap: 20px;
+  }
+}
+
+.wp-block-create-block-pod-block .md-pod-bg-pattern {
+  position: absolute;
+  bottom: -52px;
+  right: 24px;
+  left: auto;
+  top: auto;
+  margin: auto;
+
+  @include until($tablet-breakpoint) {
+	display: none;
+  }
+}
